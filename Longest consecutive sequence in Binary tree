@@ -1,0 +1,37 @@
+// Longest consecutive sequence in Binary tree
+
+
+
+//global declaration res;
+
+
+class Result{
+    int res=0;
+}
+class GfG
+{
+	public int longestConsecutive(Node root)
+        {
+         //add code here.
+         Result rs=new Result();
+          longestConsecutiveLength(root,0,root.data,rs);
+          if(rs.res==1)
+          return -1;
+         return rs.res;
+        }
+        //utility function
+        public void longestConsecutiveLength(Node root,int cur_len,int expected,Result rs){
+            if(root==null)
+            return;
+            
+            if(root.data==expected)
+            cur_len++;
+            else
+             cur_len=1;
+             
+             rs.res=Math.max(cur_len,rs.res);
+             
+             longestConsecutiveLength(root.left,cur_len,root.data+1,rs);
+             longestConsecutiveLength(root.right,cur_len,root.data+1,rs);
+        } 
+       }
